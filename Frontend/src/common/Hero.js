@@ -307,13 +307,13 @@ function Hero({ text, text1, image }) {
       >
        <div className="absolute inset-0 flex items-center justify-start px-8 mt-40">
   <div className="text-left">
-    <h1 className="text-2xl md:text-6xl text-white font-bold mb-4 font-sans">
+    <h1 className="text-[1.75rem] md:text-6xl text-white font-bold  font-sans">
       {/* About our */} {text}
     </h1>
-    <h1 className="text-2xl md:text-6xl text-white font-bold font-sans mb-4">
+    <h1 className="text-[1.75rem] md:text-6xl text-white font-bold font-sans mb-4">
       {/* Services */} {text1}
     </h1>
-    <p className="text-lg md:text-xl text-white mb-8">
+    <p className="text-base md:text-xl text-white mb-8">
       Happiness Guaranteed. If you're not satisfied, we'll come back and
       <br /> make it right, free of charge.
     </p>

@@ -1,15 +1,20 @@
-// Login.js
 import React, { useState, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { message, Spin } from 'antd';  // Added Spin component for loading state
+
 import UserContext from '../Context/UserContext';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const Login = () => {
   const [loginData, setLoginData] = useState({
     email: '',
     password: '',
   });
+  const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);  // Added loading state
 
-  const { login } = useContext(UserContext);
+  const { setUser } = useContext(UserContext);
   const navigate = useNavigate();
 
   const handleChange = (event) => {
@@ -20,25 +25,50 @@ const Login = () => {
     }));
   };
 
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!loginData.email || !loginData.password) {
-      alert('All fields are required');
+      message.error('All fields are required');
       return;
     }
 
     if (/\s/.test(loginData.email)) {
-      alert('Email should not contain spaces');
+      message.error('Email should not contain spaces');
       return;
     }
 
-    if (login(loginData.email, loginData.password)) {
-      // Redirect based on user role
-      const { role } = JSON.parse(localStorage.getItem('auth'));
-      navigate(role === 'admin' ? '/admin' : '/');
-    } else {
-      alert('Invalid credentials');
+    setLoading(true);  // Set loading to true when submitting
+
+    try {
+      const response = await axios.post(`http://localhost:4000/user/login`, {
+        email: loginData.email,
+        password: loginData.password,
+      });
+
+      setLoading(false);  // Set loading to false after the response
+
+      if (response.data.status === 'success') {
+        // Save tokens and user data
+        const { token, refreshToken, user } = response.data;
+        localStorage.setItem('auth', JSON.stringify({ token, refreshToken, user }));
+
+        // Set user data in context
+        setUser(user);
+
+        // Redirect based on user role
+        navigate(user.role === 'admin' ? '/admin' : '/');
+      } else {
+        message.error(response.data.message);
+      }
+    } catch (error) {
+      setLoading(false);  // Set loading to false if there's an error
+      console.error('Error during login:', error);
+      message.error('An error occurred during login, please try again');
     }
   };
 
@@ -58,22 +88,29 @@ const Login = () => {
               placeholder="Enter your email"
             />
           </div>
-          <div className="mb-4">
+          <div className="mb-4 relative">
             <label className="block text-gray-700">Password</label>
             <input
-              type="password"
+              type={showPassword ? 'text' : 'password'}
               name="password"
               value={loginData.password}
               onChange={handleChange}
               className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-red-500"
               placeholder="Enter your password"
             />
+            <button
+              type="button"
+              onClick={togglePasswordVisibility}
+              className="absolute inset-y-0 right-0 pr-3 pt-5 flex items-center text-sm leading-5"
+            >
+              {showPassword ? <FaEyeSlash /> : <FaEye />}
+            </button>
           </div>
           <button
             type="submit"
             className="w-full py-2 bg-red-500 text-white rounded-md hover:bg-red-600"
           >
-            Sign In
+            {loading ? <Spin /> : 'Sign In'}  {/* Show loading spinner if loading */}
           </button>
         </form>
         <div className="flex justify-center mt-4 space-x-4">
