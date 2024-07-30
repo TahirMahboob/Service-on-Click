@@ -54,11 +54,12 @@ const Login = () => {
 
       if (response.data.status === 'success') {
         // Save tokens and user data
-        const { token, refreshToken, user } = response.data;
-        localStorage.setItem('auth', JSON.stringify({ token, refreshToken, user }));
+        const { token, refreshToken, user,} = response.data;
+        localStorage.setItem('auth', JSON.stringify({ token, refreshToken, user, }));
 
         // Set user data in context
         setUser(user);
+
 
         // Redirect based on user role
         navigate(user.role === 'admin' ? '/admin' : '/');
