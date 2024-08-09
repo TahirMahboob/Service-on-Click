@@ -1,10 +1,11 @@
 import React, { useState, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { message, Spin } from 'antd';  // Added Spin component for loading state
-
+import { message, Spin } from 'antd';
 import UserContext from '../Context/UserContext';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { useDispatch } from 'react-redux';
+import { setUserInfo } from '../../features/auth/authSlice';
 
 const Login = () => {
   const [loginData, setLoginData] = useState({
@@ -12,11 +13,11 @@ const Login = () => {
     password: '',
   });
   const [showPassword, setShowPassword] = useState(false);
-  const [loading, setLoading] = useState(false);  // Added loading state
+  const [loading, setLoading] = useState(false);
 
   const { setUser } = useContext(UserContext);
   const navigate = useNavigate();
-
+  const dispatch = useDispatch()
   const handleChange = (event) => {
     const { name, value } = event.target;
     setLoginData((prevData) => ({
@@ -42,32 +43,28 @@ const Login = () => {
       return;
     }
 
-    setLoading(true);  // Set loading to true when submitting
+    setLoading(true);
 
     try {
-      const response = await axios.post(`http://localhost:4000/user/login`, {
+      const response = await axios.post('http://localhost:4000/user/login', {
         email: loginData.email,
         password: loginData.password,
       });
-
-      setLoading(false);  // Set loading to false after the response
+      setLoading(false);
 
       if (response.data.status === 'success') {
-        // Save tokens and user data
-        const { token, refreshToken, user,} = response.data;
-        localStorage.setItem('auth', JSON.stringify({ token, refreshToken, user, }));
+        const { token, refreshToken, user } = response.data;
+        localStorage.setItem('auth', JSON.stringify({ token, refreshToken, user }));
 
-        // Set user data in context
         setUser(user);
-
-
-        // Redirect based on user role
+        dispatch(setUserInfo(response.data))
+        // Navigate based on user role
         navigate(user.role === 'admin' ? '/admin' : '/');
       } else {
         message.error(response.data.message);
       }
     } catch (error) {
-      setLoading(false);  // Set loading to false if there's an error
+      setLoading(false);
       console.error('Error during login:', error);
       message.error('An error occurred during login, please try again');
     }
@@ -111,7 +108,7 @@ const Login = () => {
             type="submit"
             className="w-full py-2 bg-red-500 text-white rounded-md hover:bg-red-600"
           >
-            {loading ? <Spin /> : 'Sign In'}  {/* Show loading spinner if loading */}
+            {loading ? <Spin /> : 'Sign In'}
           </button>
         </form>
         <div className="flex justify-center mt-4 space-x-4">

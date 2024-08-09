@@ -1,14 +1,7 @@
-// UserContextProvider.js 3rd
+// UserContextProvider.js
 import { useEffect, useState } from 'react';
+import axios from 'axios';  // Import axios
 import UserContext from './UserContext';
-
-const hardcodedAdmin = {
-  userDetails: 'Admin User',
-  token: 'admin-token',
-  role: 'admin',
-  email: 'admin@example.com',
-  password: 'admin123', // Only for testing purposes
-};
 
 function UserContextProvider({ children }) {
   const [user, setUser] = useState({
@@ -24,14 +17,29 @@ function UserContextProvider({ children }) {
     }
   }, []);
 
-  const login = (email, password) => {
-    if (email === hardcodedAdmin.email && password === hardcodedAdmin.password) {
-      const loggedInUser = { ...hardcodedAdmin };
-      localStorage.setItem('auth', JSON.stringify(loggedInUser));
-      setUser(loggedInUser);
-      return true;
+  const login = async (email, password) => {
+    try {
+      const response = await axios.post('http://localhost:4000/user/login', {  // Updated API URL
+        email,
+        password,
+      });
+
+      if (response.data.status === 'success') {
+        // Save tokens and user data
+        const { token, refreshToken, user } = response.data;
+        localStorage.setItem('auth', JSON.stringify({ token, refreshToken, user }));
+
+        // Set user data in context
+        setUser(user);
+        return true;
+      } else {
+        console.error('Login failed:', response.data.message);
+        return false;
+      }
+    } catch (error) {
+      console.error('Error during login:', error);
+      return false;
     }
-    return false;
   };
 
   const logout = () => {

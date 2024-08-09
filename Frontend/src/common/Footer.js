@@ -45,6 +45,7 @@ function Footer() {
                 loading="lazy"
                 width="10"
                 alt="Facebook"
+                
               />
             </a>
 

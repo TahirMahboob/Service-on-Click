@@ -90,113 +90,104 @@ function Ourcleaning() {
 
         {/*  Cleaning professionals */}
         <div>
-          <div className="text-center mt-36">
-            <p className="text-[#ED5521]">FEATURED</p>
-            <h1 className="text-[40px] md:text-[50px] font-bold text-neutral-800">
-              Cleaning professionals
-            </h1>
-            <p className="text-[16px] md:text-[20px] mt-4 text-neutral-500 leading-custom mb-2">
-              Our cleaning professionals are meticulously trained, background
-              <br className="hidden md:block" /> checked, and have passed
-              multiple interviews and training
-              <br className="hidden md:block" /> sessions.
-            </p>
-            <Link to="/book">
-              <button className="bg-transparent text-[#ED5521]  font-bold py-2 px-4 rounded mt-2 border">
-                Book Now
-              </button>
-            </Link>
+        <div className="text-center mt-36">
+    <p className="text-[#ED5521]">FEATURED</p>
+    <h1 className="text-[40px] md:text-[50px] font-bold text-neutral-800">
+      Cleaning professionals
+    </h1>
+    <p className="text-[16px] md:text-[20px] mt-4 text-neutral-500 leading-custom mb-2">
+      Our cleaning professionals are meticulously trained, background
+      <br className="hidden md:block" /> checked, and have passed
+      multiple interviews and training
+      <br className="hidden md:block" /> sessions.
+    </p>
+    <Link to="/book">
+      <button className="bg-transparent text-[#ED5521]  font-bold py-2 px-4 rounded mt-2 border">
+        Book Now
+      </button>
+    </Link>
 
-            <div className="mt-10 w-full px-4 mb-36">
-              <div className="flex flex-wrap justify-center">
-                <div className="w-full md:w-1/4 p-4">
-
-                  <div className="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md mx-auto flex flex-col h-full">
-                    <img
-                      src="./images/Worker1.jpg"
-                      className="w-full rounded-t-lg"
-                      alt="Card"
-                    />
-                    <div className="p-4 flex-grow">
-                      <h5 className="text-lg font-medium text-[1.4rem] text-neutral-800">
-                        Virginia
-                      </h5>
-                      <p className="text-neutral-500 leading-custom mt-4 mb-2">
-                        Virginia is a meticulous professional known for her
-                        exceptional pozole and attention to detail. Deeply
-                        experienced in the craft of cleaning, she imparts
-                        invaluable skills to the team.
-                      </p>
-                    </div>
-                  </div>
-
-                </div>
-                <div className="w-full md:w-1/4 p-4">
-                  <div className="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md mx-auto flex flex-col h-full">
-                    <img
-                      src="./images/Worker2.jpg"
-                      className="w-full rounded-t-lg"
-                      alt="Card"
-                    />
-                    <div className="p-4 flex-grow">
-                      <h5 className="text-lg font-medium text-[1.4rem] text-neutral-800">
-                        Heydi
-                      </h5>
-                      <p className="text-neutral-500 leading-custom mt-4 mb-2">
-                        Heydi takes great pride in maintaining cleanliness and
-                        order which are both essential values in her life. When
-                        she's not delighting customers, she enjoys taking
-                        strolls through her neighborhood parks.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div className="w-full md:w-1/4 p-4">
-                  <div className="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md mx-auto flex flex-col h-full">
-                    <img
-                      src="./images/Worker3.jpg"
-                      className="w-full rounded-t-lg"
-                      alt="Card"
-                    />
-                    <div className="p-4 flex-grow">
-                      <h5 className="text-lg font-medium text-[1.4rem] text-neutral-800">
-                        Gloria
-                      </h5>
-                      <p className="text-neutral-500  leading-custom mt-4 mb-2">
-                        Originally from El Salvador and now a respected cleaning
-                        leader in Oakland, Gloria is the longest-tenured
-                        employee of BerryClean. She is a proud mother and a
-                        dedicated professional.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div className="w-full md:w-1/4 p-4">
-                  <div className="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md mx-auto flex flex-col h-full">
-                    <img
-                      src="./images/Worker4.jpg"
-                      className="w-full rounded-t-lg"
-                      alt="Card"
-                    />
-                    <div className="p-4 flex-grow">
-                      <h5 className="text-lg font-medium text-[1.4rem] text-neutral-800">
-                        Fabian
-                      </h5>
-                      <p className="text-neutral-500 leading-custom mt-4 mb-2">
-                        Fabian is passionate about farming and animals,
-                        especially horses and dogs. He hails from Chiapas,
-                        Mexico, and loves agriculture and horticulture. But most
-                        of all he loves Barry.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+    <div className="mt-10 w-full px-4 mb-36">
+      <div className="flex flex-wrap justify-center">
+        {/* Card 1 */}
+        <div className="w-full md:w-1/4 p-4 flex">
+          <div className="flex flex-col bg-white rounded-lg border border-gray-200 shadow-md mx-auto h-full">
+            <div className="w-full flex-shrink-0 aspect-w-16 aspect-h-9">
+              <img
+                src="./images/Worker1.jpg"
+                className="w-full h-full object-cover rounded-t-lg"
+                alt="Card"
+              />
             </div>
-
+            <div className="p-4 flex-grow">
+              <h5 className="text-lg font-medium text-[1.4rem] text-neutral-800">
+                Virginia
+              </h5>
+              <p className="text-neutral-500 leading-custom mt-4 mb-2">
+                Virginia is a meticulous professional known for her
+                exceptional pozole and attention to detail. Deeply
+                experienced in the craft of cleaning, she imparts
+                invaluable skills to the team.
+              </p>
+            </div>
           </div>
-
         </div>
+        
+        {/* Card 2 */}
+        <div className="w-full md:w-1/4 p-4 flex">
+          <div className="flex flex-col bg-white rounded-lg border border-gray-200 shadow-md mx-auto h-full">
+            <div className="w-full flex-shrink-0 aspect-w-16 aspect-h-9">
+              <img
+                src="./images/Worker2.jpg"
+                className="w-full h-full object-cover rounded-t-lg"
+                alt="Card"
+              />
+            </div>
+            <div className="p-4 flex-grow">
+              <h5 className="text-lg font-medium text-[1.4rem] text-neutral-800">
+                Heydi
+              </h5>
+              <p className="text-neutral-500 leading-custom mt-4 mb-2">
+                Heydi takes great pride in maintaining cleanliness and
+                order which are both essential values in her life. When
+                she's not delighting customers, she enjoys taking
+                strolls through her neighborhood parks.
+              </p>
+            </div>
+          </div>
+        </div>
+        
+        {/* Card 3 */}
+        <div className="w-full md:w-1/4 p-4 flex">
+  <div className="flex flex-col bg-white rounded-lg border border-gray-200 shadow-md mx-auto h-full">
+    <div className="w-full h-72 overflow-hidden">
+      <img
+        src="./images/Worker3.jpg"
+        className="w-full h-full object-cover rounded-t-lg"
+        alt="Card"
+      />
+    </div>
+    <div className="p-4 flex-grow">
+      <h5 className="text-lg font-medium text-[1.4rem] text-neutral-800">
+        Gloria
+      </h5>
+      <p className="text-neutral-500 leading-custom mt-4 mb-2">
+        Originally from El Salvador and now a respected cleaning
+        leader in Oakland, Gloria is the longest-tenured
+        employee of BerryClean. She is a proud mother and a
+        dedicated professional.
+      </p>
+    </div>
+  </div>
+</div>
+
+
+      </div>
+    </div>
+  </div>
+
+</div>
+
 
       </div>
 
